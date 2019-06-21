@@ -8,13 +8,14 @@ const app = express()
 
 //all middlewares: logging, static, bodyParser for axios.requests
 app.use(morgan('dev'))
+
+//for api routes:
+app.use('/api', require('./api'))
+
 //app.use(express.static('../public'));
 app.use(express.static(path.join(__dirname, '..', 'public')))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: true}))
-
-//for api routes:
-app.use('/api', require('./api'))
 
 // any remaining requests with an extension (.js, .css, etc.) send 404
 app.use((req, res, next) => {

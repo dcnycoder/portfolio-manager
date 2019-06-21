@@ -1,7 +1,7 @@
 const router = require('express').Router()
 
 //router.use('/active', require('./active.js'));
-router.use('/sold', require('./sold'))
+router.use('/sold', require('./stocks'))
 
 //for 404 handling:
 router.use((err, req, res, next) => {
