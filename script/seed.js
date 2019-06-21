@@ -1,18 +1,74 @@
 'use strict'
 
 const db = require('../server/db')
-const {User} = require('../server/db/models')
+const {Stocks} = require('../server/db/models')
+
+const tickers = [
+  'mmm',
+  'axp',
+  'appl',
+  'ba',
+  'cat',
+  'cvx',
+  'csco',
+  'ko',
+  'dis',
+  'dow',
+  'xom',
+  'gs',
+  'hd',
+  'ibm',
+  'intc',
+  'jnj',
+  'jpm',
+  'mcd',
+  'mrk',
+  'mcd',
+  'mrk',
+  'msft',
+  'nke',
+  'pfe',
+  'pg',
+  'trv',
+  'utx',
+  'unh',
+  'vz',
+  'v',
+  'wmt',
+  'wba'
+]
+
+console.log('Stocks: ', Stocks)
+const stockPromises = tickers.map(ticker => {
+  let stock = {
+    ticker: '',
+    currentPrice: null
+  }
+  stock.ticker = ticker
+  //stock.price = null;
+
+  //const stockObject = Stocks.create(stock);
+  //console.log("stock object: ", stockObject);
+  return stock
+})
+//console.log("stockPromises: ", stockPromises);
 
 async function seed() {
   await db.sync({force: true})
   console.log('db synced!')
 
-  const users = await Promise.all([
-    User.create({email: 'cody@email.com', password: '123'}),
-    User.create({email: 'murphy@email.com', password: '123'})
-  ])
+  //should I use bulkCreate?
+  // const users = await Promise.all(
+  //   // [
+  //   // User.create({email: 'cody@email.com', password: '123'}),
+  //   // User.create({email: 'murphy@email.com', password: '123'})
+  //   // ]
+  //   stockPromises
+  // )
+  //await Stocks.create({ticker: 'IBM', currentPrice: 100});
+  await Stocks.bulkCreate(stockPromises)
 
-  console.log(`seeded ${users.length} users`)
+  //console.log(`seeded ${stockPromises.length} stocks`)
   console.log(`seeded successfully`)
 }
 
