@@ -54,7 +54,7 @@ const stockPromises = tickers.map(ticker => {
 //console.log("stockPromises: ", stockPromises);
 
 async function seed() {
-  await db.sync({force: true})
+  await db.sync()
   console.log('db synced!')
 
   //should I use bulkCreate?

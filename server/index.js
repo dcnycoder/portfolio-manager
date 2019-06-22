@@ -46,7 +46,7 @@ app.use((err, req, res, next) => {
   res.status(err.status || 500).send(err.message || 'Internal Server Error! ')
 })
 
-db.sync({force: true}).then(() => {
+db.sync().then(() => {
   app.listen(8080, () => {
     console.log('Listening on port 8080')
   })
