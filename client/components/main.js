@@ -7,12 +7,17 @@ class DisconnectedMain extends Component {
     this.props.getStocks()
   }
   render() {
+    console.log('this.props.stocks: ', this.props.stocks)
     return (
       <div>
         <h3>Welcome to the App!</h3>
         <ul>
           {this.props.stocks.map(elem => {
-            return <li>{elem.ticker}</li>
+            return (
+              <li key={elem.ticker}>
+                Stock: {elem.ticker} Price: {elem.currentPrice}
+              </li>
+            )
           })}
         </ul>
       </div>

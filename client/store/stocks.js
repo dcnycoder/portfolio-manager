@@ -4,7 +4,7 @@ import axios from 'axios'
 const GET_STOCKS = 'GET_STOCKS'
 const GET_STOCK = 'GET_STOCK'
 
-const initialState = [1, 2, 3, 4]
+const initialState = []
 
 const getStocks = stocks => {
   return {
@@ -36,10 +36,18 @@ const getStock = ticker => {
   }
 }
 
+const getStockThunk = dispatch => {
+  return () => {
+    dispatch(getStock())
+  }
+}
+
 const stockReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_STOCKS:
       return action.stocks
+    // case: GET_STOCK:
+    //   return
     default:
       return state
   }
