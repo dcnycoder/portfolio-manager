@@ -11,6 +11,7 @@ class DisconnectedMain extends Component {
     return (
       <div>
         <h3>Welcome to the App!</h3>
+        <canvas>Canvas</canvas>
         <ul>
           {this.props.stocks.map(elem => {
             return (
