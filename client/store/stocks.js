@@ -29,15 +29,27 @@ export const getStocksThunk = dispatch => {
   }
 }
 
-const getStock = ticker => {
+const getStock = (ticker, data) => {
+  console.log('getStock dispatched!')
   return {
     type: GET_STOCK,
-    ticker: ticker
+    ticker: ticker,
+    data: data
   }
 }
 
-const getStockThunk = dispatch => {
-  return () => {
+export const getStockThunk = function(ticker, dispatch) {
+  console.log('getStockThunk called!')
+  return (ticker, dispatch) => {
+    try {
+      const {data} = axios.get(`api/stocks/${ticker}`, (req, res, next) => {
+        console.log('data in getStockThunk: ', data)
+        //res.send(data);
+        dispatch(getStock(ticker, data))
+      })
+    } catch (error) {
+      console.log('error in getStockThunk!')
+    }
     dispatch(getStock())
   }
 }

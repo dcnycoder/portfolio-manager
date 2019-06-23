@@ -1,16 +1,18 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {getStocksThunk} from '../store'
+import {getStockThunk} from '../store'
 
-class DisconnetedSingleStock extends Component {
-  // ComponentDidMount() {
-  //   this.props.getStock()
-  // }
+class DisconnectedSingleStock extends Component {
+  ComponentDidMount() {
+    //console.log("singleStock this.props: ", this.props);
+    this.props.getStock(req.params.ticker)
+  }
   render() {
+    console.log('singleStock this.props: ', this.props)
     return (
       <div>
         <h2>Single Stock Page: </h2>
-        <canvas />
+        <canvas>Canvas</canvas>
       </div>
     )
   }
@@ -19,7 +21,7 @@ class DisconnetedSingleStock extends Component {
 //export default DisconnetedSingleStock
 
 const mapStateToProps = state => {
-  console.log('state in mapStateToProps: ', state)
+  console.log('state in singleStock mapStateToProps: ', state)
   return {
     stocks: state.stocks
   }
@@ -27,10 +29,10 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    getStocks: () => dispatch(getStocksThunk())
+    getStock: ticker => dispatch(getStockThunk(ticker))
   }
 }
 
 export const SingleStock = connect(mapStateToProps, mapDispatchToProps)(
-  DisconnetedSingleStock
+  DisconnectedSingleStock
 )

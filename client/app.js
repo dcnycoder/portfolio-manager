@@ -5,7 +5,7 @@ import history from './history'
 import {Main} from './components/main'
 import {SingleStock} from './components/singleStock'
 
-import Routes from './routes'
+//import Routes from './routes'
 
 class App extends Component {
   render() {
@@ -13,7 +13,7 @@ class App extends Component {
       // <Router history={history}></Router>
       <Router>
         <Switch>
-          <Route path="/stock" component={SingleStock} />
+          <Route path="/stocks/:ticker" component={SingleStock} />
           <Route path="/" component={Main} />
 
           {/* <Route path="inbox" component={Inbox}> */}

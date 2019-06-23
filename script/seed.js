@@ -6,36 +6,36 @@ const {Stocks} = require('../server/db/models')
 const tickers = [
   'mmm',
   'axp',
-  'appl',
-  'ba',
-  'cat',
-  'cvx',
-  'csco',
-  'ko',
-  'dis',
-  'dow',
-  'xom',
-  'gs',
-  'hd',
-  'ibm',
-  'intc',
-  'jnj',
-  'jpm',
-  'mcd',
-  'mrk',
-  'mcd',
-  'mrk',
-  'msft',
-  'nke',
-  'pfe',
-  'pg',
-  'trv',
-  'utx',
-  'unh',
-  'vz',
-  'v',
-  'wmt',
-  'wba'
+  'aapl'
+  // 'ba',
+  // 'cat',
+  // 'cvx',
+  // 'csco',
+  // 'ko',
+  // 'dis',
+  // 'dow',
+  // 'xom',
+  // 'gs',
+  // 'hd',
+  // 'ibm',
+  // 'intc',
+  // 'jnj',
+  // 'jpm',
+  // 'mcd',
+  // 'mrk',
+  // 'mcd',
+  // 'mrk',
+  // 'msft',
+  // 'nke',
+  // 'pfe',
+  // 'pg',
+  // 'trv',
+  // 'utx',
+  // 'unh',
+  // 'vz',
+  // 'v',
+  // 'wmt',
+  // 'wba'
 ]
 
 console.log('Stocks: ', Stocks)
@@ -54,7 +54,7 @@ const stockPromises = tickers.map(ticker => {
 //console.log("stockPromises: ", stockPromises);
 
 async function seed() {
-  await db.sync()
+  await db.sync({force: true})
   console.log('db synced!')
 
   //should I use bulkCreate?
