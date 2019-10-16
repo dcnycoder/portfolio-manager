@@ -20,12 +20,6 @@ class App extends Component {
         </Switch>
       </Router>
     )
-
-    // {/* // return (
-    // //   <div>
-    // //     <Main />
-    // //     {/* <SearchForm /> */}
-    // {/* </Router>   </div> */}
   }
 }
 

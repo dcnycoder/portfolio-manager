@@ -3,16 +3,22 @@ import {connect} from 'react-redux'
 import {getStockThunk} from '../store'
 
 class DisconnectedSingleStock extends Component {
-  ComponentDidMount() {
-    //console.log("singleStock this.props: ", this.props);
-    this.props.getStock(req.params.ticker)
+  // ComponentDidMount() {
+  //   //console.log("singleStock this.props: ", this.props);
+  //   this.props.getStock(req.params.ticker)
+  // }
+  componentDidMount() {
+    this.props.getStock(this.props.match.params.ticker)
   }
   render() {
-    console.log('singleStock this.props: ', this.props)
+    console.log('singleStock this.props: ', this.props.match.params.ticker)
     return (
       <div>
         <h2>Single Stock Page: </h2>
-        <canvas>Canvas</canvas>
+        {/* <canvas>Canvas</canvas> */}
+        <svg width="100" height="100" fill="yellow">
+          <rect x="0" y="0" width="60" height="60" />
+        </svg>
       </div>
     )
   }
@@ -23,7 +29,7 @@ class DisconnectedSingleStock extends Component {
 const mapStateToProps = state => {
   console.log('state in singleStock mapStateToProps: ', state)
   return {
-    stocks: state.stocks
+    //stocks: state.stocks
   }
 }
 

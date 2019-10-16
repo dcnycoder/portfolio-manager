@@ -1,6 +1,8 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {getStocksThunk} from '../store'
+import {Link} from 'react-router-dom'
+import {SingleStock} from './singleStock'
 
 class DisconnectedMain extends Component {
   componentDidMount() {
@@ -10,13 +12,14 @@ class DisconnectedMain extends Component {
     console.log('this.props.stocks: ', this.props.stocks)
     return (
       <div>
-        <h3>Welcome to the App!</h3>
+        <h3>Welcome to the Stock App!</h3>
 
         <ul>
           {this.props.stocks.map(elem => {
             return (
               <li key={elem.ticker}>
-                Stock: {elem.ticker} Price: {elem.currentPrice}
+                Stock: <Link to={`/stocks/${elem.ticker}`}>{elem.ticker}</Link>{' '}
+                Price: {elem.price}
               </li>
             )
           })}

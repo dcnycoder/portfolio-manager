@@ -9,6 +9,10 @@ const Stocks = db.define('stocks', {
   currentPrice: {
     type: Sequelize.INTEGER
     //allowNull: false,
+  },
+  timeSeries: {
+    //type: Sequelize.ARRAY(Sequelize.DECIMAL),
+    type: Sequelize.ARRAY(Sequelize.JSON)
   }
 })
 

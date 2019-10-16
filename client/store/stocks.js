@@ -14,16 +14,11 @@ const getStocks = stocks => {
 }
 
 export const getStocksThunk = dispatch => {
+  console.log('getStocksThunk called!')
   return async dispatch => {
     //get all the stocks from db in the form of array
     //and call the whole array from AlphaVantage
-
-    //tickers.map(async (ticker) => {
-    //   const {data} = await axios.get(`https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=${ticker}&interval=5min&apikey=demo`);
-    //   console.log('data from alphavantage: ', data);
-    // })
     const {data} = await axios.get('/api/stocks')
-
     console.log('tickers array: ', data)
     dispatch(getStocks(data))
   }
@@ -38,19 +33,19 @@ const getStock = (ticker, data) => {
   }
 }
 
-export const getStockThunk = function(ticker, dispatch) {
+export const getStockThunk = ticker => {
   console.log('getStockThunk called!')
-  return (ticker, dispatch) => {
+  return async dispatch => {
     try {
-      const {data} = axios.get(`api/stocks/${ticker}`, (req, res, next) => {
-        console.log('data in getStockThunk: ', data)
-        //res.send(data);
-        dispatch(getStock(ticker, data))
-      })
+      console.log('ticker: ', ticker)
+      const result = await axios.get(`api/stocks/${ticker}`)
+      console.log('result in getStockThunk: ', result)
+      console.log('data in getStockThunk: ', data)
+      dispatch(getStock(ticker, data))
     } catch (error) {
       console.log('error in getStockThunk!')
     }
-    dispatch(getStock())
+    //dispatch(getStock())
   }
 }
 
@@ -58,8 +53,8 @@ const stockReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_STOCKS:
       return action.stocks
-    // case: GET_STOCK:
-    //   return
+    case GET_STOCK:
+      return [action.data]
     default:
       return state
   }
