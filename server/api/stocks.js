@@ -28,6 +28,7 @@ router.get('/:ticker', async (req, res, next) => {
 // router.put('/stocks', (req, res, next) => {
 
 // })
+//
 
 //GETS ALL STOCKS ON THE FRONTPAGE:
 //Thunk that gets the stocks: const {data} = await axios.get('/api/stocks');
